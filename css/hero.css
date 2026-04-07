@@ -1,0 +1,340 @@
+
+
+:root{
+  /* Серебро (можно подкрутить оттенки) */
+  --silver-0:#ffffff;
+  --silver-1:#f2f2f2;
+  --silver-2:#d9d9d9;
+  --silver-3:#bfbfbf;
+  --silver-4:#9e9e9e;
+  --silver-5:#7a7a7a;
+}
+
+.text{
+  font-family: kudryashev-d-excontrast-sans, system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 12vw, 12rem);
+  line-height: 1;
+  margin: 0.5em 0;
+  letter-spacing: .04em;
+  /* для вариантов с градиентом внутри текста */
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  position: relative; /* для отражения через ::after */
+}
+/* Серебряный градиент для текста */
+.metal-silver{
+  background-image:
+    /* блик */
+    radial-gradient(120% 160% at 70% 30%,
+      rgba(255,255,255,.9) 0%,
+      rgba(255,255,255,.15) 25%,
+      rgba(255,255,255,0) 55%),
+    /* «брэш» — полосы металла */
+    repeating-linear-gradient(110deg,
+      var(--silver-5) 0%,
+      var(--silver-4) 7%,
+      var(--silver-3) 14%,
+      var(--silver-2) 21%,
+      var(--silver-1) 28%,
+      var(--silver-2) 35%,
+      var(--silver-3) 42%,
+      var(--silver-4) 49%,
+      var(--silver-5) 56%);
+  background-size: 180% 180%, 320% 320%;
+  background-position: 0% 50%, 0% 50%;
+  animation: silverFlow 6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.15));
+}
+
+@keyframes silverFlow{
+  0%   { background-position: 0% 50%,   0% 50%; }
+  50%  { background-position: 100% 40%, 100% 60%; }
+  100% { background-position: 50% 60%,  50% 40%; }
+}
+/* ===== базовые переменные ===== */
+:root{
+  /* серебро */
+  --silver-0:#ffffff;
+  --silver-1:#f2f2f2;
+  --silver-2:#d9d9d9;
+  --silver-3:#bfbfbf;
+  --silver-4:#9e9e9e;
+  --silver-5:#7a7a7a;
+
+  /* черный глянец */
+  --black-0:#000000;
+  --black-1:#0a0a0a;
+  --black-2:#121212;
+
+  --shine-speed: 6s;
+}
+
+/* ===== контейнер сцены ===== */
+.kof-floor-scene{
+  min-height: 100vh;
+  background: #000;                 /* черный фон вокруг пола */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.scene{
+  width: min(1800px, 92vw);
+  height: min(700px, 70vh);
+  position: relative;
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+}
+
+/* ===== глянцевый пол (зеркало) ===== */
+.floor{
+  position: absolute;
+  inset: auto -15% -10% -15%;       /* шире, чтобы «пол» уходил за края */
+  height: 80%;
+  transform: rotateX(78deg) translateZ(-40px); /* почти горизонтально */
+  transform-origin: top center;
+  border-radius: 48px / 12px;
+
+  /* глянец: слои */
+  background:
+    /* движущийся блик */
+    radial-gradient(120% 60% at 50% 40%,
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,.07) 18%,
+      rgba(255,255,255,0) 45%) ,
+
+    /* полосы глянца */
+    repeating-linear-gradient(100deg,
+      rgba(255,255,255,.08) 0%,
+      rgba(255,255,255,.00) 6%,
+      rgba(255,255,255,.08) 12%,
+      rgba(255,255,255,.00) 18%) ,
+
+    /* базовый «лак» */
+    linear-gradient(to bottom,
+      var(--black-2) 0%,
+      var(--black-1) 55%,
+      var(--black-0) 100%);
+
+  background-size: 200% 200%, 250% 250%, 100% 100%;
+  animation: floorShine var(--shine-speed) ease-in-out infinite alternate;
+
+  /* легкая виньетка по краям пола */
+  -webkit-mask-image: radial-gradient(120% 80% at 50% 30%,
+                          rgba(0,0,0,1) 0%,
+                          rgba(0,0,0,1) 70%,
+                          rgba(0,0,0,0) 100%);
+          mask-image: radial-gradient(120% 80% at 50% 30%,
+                          rgba(0,0,0,1) 0%,
+                          rgba(0,0,0,1) 70%,
+                          rgba(0,0,0,0) 100%);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.8) inset,
+    0 8px 40px rgba(0,0,0,.6);
+}
+
+
+/* ===== группа текста (чуть «лежит» на полу) ===== */
+.stack{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+}
+
+.logo{
+  text-align: center;
+  transform-origin: center center;
+  transform: translateY(14vh);
+  will-change: transform;
+}
+
+/* отражение — переворот по вертикали и затухание маской */
+.logo--reflection{
+  transform: rotateX(45deg) translateY(30px) scaleY(-1.1471);
+  opacity: .285;
+  filter: blur(3px);
+  -webkit-mask-image: linear-gradient(to bottom,
+                          rgba(0,0,0,.55) 0%,
+                          rgba(0,0,0,.35) 30%,
+                          rgba(0,0,0,.0) 85%);
+          mask-image: linear-gradient(to bottom,
+                          rgba(0,0,0,.55) 0%,
+                          rgba(0,0,0,.35) 30%,
+                          rgba(0,0,0,.0) 85%);
+  pointer-events: none;
+}
+
+/* ===== серебристая заливка с бликами (анимированный Linear+Radial) ===== */
+.metal-silver{
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+
+  background-image:
+    /* движущийся блик */
+    radial-gradient(120% 160% at 70% 30%,
+      rgba(255,255,255,.95) 0%,
+      rgba(255,255,255,.2) 24%,
+      rgba(255,255,255,0) 52%),
+    /* «металлическая щётка» */
+    repeating-linear-gradient(110deg,
+      var(--silver-5) 0%,
+      var(--silver-4) 6%,
+      var(--silver-3) 12%,
+      var(--silver-2) 18%,
+      var(--silver-1) 24%,
+      var(--silver-2) 30%,
+      var(--silver-3) 36%,
+      var(--silver-4) 42%,
+      var(--silver-5) 48%);
+  background-size: 200% 200%, 320% 320%;
+  background-position: 0% 50%, 0% 50%;
+  animation: silverFlow var(--shine-speed) ease-in-out infinite alternate;
+
+  /* легкая «глянцевая» окантовка */
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,.08))
+          drop-shadow(0 8px 22px rgba(0,0,0,.45));
+}
+
+@keyframes silverFlow{
+  0%   { background-position: 0% 50%,   0% 50%; }
+  50%  { background-position: 100% 40%, 100% 60%; }
+  100% { background-position: 50% 60%,  50% 40%; }
+}
+
+/* размеры текста */
+.big{
+  font-family: kudryashev-d-excontrast-sans, system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(3.5rem, 16vw, 16rem);
+  letter-spacing: .04em;
+  line-height: 1;
+  margin: 0;
+}
+.sub{
+  margin-top: .5rem;
+  font-size: clamp(0.9rem, 2.4vw, 1.5rem);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* небольшая адаптация: уменьшаем наклон на маленьких экранах */
+@media (max-width: 600px){
+  .scene{ height: 60vh; }
+  .logo{ transform: rotateX(12deg) translateZ(12px); }
+  .logo--reflection{ transform: rotateX(12deg) translateY(8px) scaleY(-1); }
+}
+
+    :root{
+      --bg: #000000;
+      --card: #ff3b2f; /* orange-red */
+      --card-grad-1: #ff3b2f;
+      --card-grad-2: #ff6a00;
+      --text: #ffffff;
+      --muted: #ffffffcc;
+      --corner: 28px;
+      --shadow: 0 40px 120px rgba(255,58,47,0.25), 0 6px 30px rgba(0,0,0,0.5);
+      --maxw: 1400px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    .wrap{
+      width:min(100%, 100vw);
+    }
+    header{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(8px) saturate(120%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    .hero{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px clamp(16px, 4vw, 48px);
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+    }
+    .brand{font-weight:700;letter-spacing:0.5px}
+    .subtitle{opacity:.8}
+
+    /* === BIG CARDS === */
+    .cards{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: clamp(16px, 4vw, 48px);
+      display:grid;
+      gap: clamp(20px, 3vw, 36px);
+    }
+    .card{
+      position:relative;
+      min-height: 90vh;
+      width: 100%;
+      border-radius: var(--corner);
+      background: linear-gradient(145deg, var(--card-grad-1), var(--card-grad-2));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      isolation:isolate;
+    }
+    .glow{
+      position:absolute;inset:-40%;z-index:0;pointer-events:none;
+      background: radial-gradient(60% 60% at 60% 40%, rgba(255,255,255,0.18), transparent 60%),
+                  radial-gradient(40% 40% at 40% 70%, rgba(255,255,255,0.16), transparent 60%);
+      filter: blur(30px);
+      transform: translateZ(-80px) scale(1.2);
+    }
+    .card-inner{
+      position:relative;z-index:1;
+      display:grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(20px, 3vw, 40px);
+      padding: clamp(24px, 5vw, 56px);
+      height:100%;
+      transform-style: preserve-3d;
+    }
+
+    @media (max-width: 960px){
+      .card-inner{grid-template-columns: 1fr;}
+    }
+
+    .text-block{align-self:center;transform-style: preserve-3d;}
+    .eyebrow{opacity:.85; font-weight:600; letter-spacing:.12em; text-transform:uppercase;}
+    .title{
+      font-size: clamp(28px, 4.2vw, 68px);
+      line-height:1.04;
+      margin:.2em 0 .4em;
+      font-weight:800;
+      transform: translateZ(40px);
+      text-shadow: 0 8px 24px rgba(0,0,0,.35), 0 2px 2px rgba(0,0,0,.45);
+    }
+    .role{font-size:clamp(16px,1.5vw,22px); opacity:.95; margin-bottom:.8em;}
+    .bio{font-size: clamp(15px, 1.2vw, 18px); color: var(--muted); max-width: 72ch}
+
+    .cta{margin-top: 22px;display:flex; gap:12px; flex-wrap:wrap;transform: translateZ(30px);}
+    .btn{appearance:none; border:0; cursor:pointer;background:#000; color:#fff; padding:12px 18px; border-radius:12px; font-weight:700;box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,0.08);transform: translateZ(25px);}
+    .btn.alt{ background: transparent; backdrop-filter: blur(4px); border:1px solid rgba(255,255,255,.35)}
+
+    .media{position:relative; align-self:stretch; display:grid; place-items:center;transform-style: preserve-3d;}
+    .photo-wrap{width: min(520px, 80%);aspect-ratio: 4 / 5;border-radius: calc(var(--corner) - 8px);overflow:hidden;box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 6px 20px rgba(0,0,0,.45);transform: rotateY(-6deg) rotateX(3deg) translateZ(55px);will-change: transform;}
+    .photo{width:100%; height:100%; object-fit:cover; display:block;transform: scale(1.08) translateZ(20px);}
+
+    .parallax-shape{position:absolute; border-radius:999px; filter: blur(6px); opacity:.22; mix-blend-mode: screen;will-change: transform;}
+    .shape-a{ width: 680px; height: 680px; background: radial-gradient(circle at 30% 30%, #fff, transparent 60%); top:-120px; right:-120px; }
+    .shape-b{ width: 420px; height: 420px; background: radial-gradient(circle at 60% 60%, #fff, transparent 60%); bottom:-140px; left:-120px; }
+
+    footer{max-width: var(--maxw);margin: 40px auto 80px;padding: 0 clamp(16px,4vw,48px);opacity:.7; font-size:14px;}

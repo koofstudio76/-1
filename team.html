@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="ru"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KOOF — Cards + Doors</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/wave.css">
+  <!-- GSAP + ScrollTrigger только для карточек -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer=""></script>
+  <script src="js/menu.js" defer=""></script>
+
+</head>
+<body>
+
+<div class="curtains" id="curtains" aria-hidden="true">
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+  <div class="curtains__brand" id="curtainsBrand" aria-hidden="true">
+    <span class="brand-title">KOOF Studio</span>
+  </div>
+</div>
+
+
+  <!-- Фиксированный хедер -->
+  <header class="hdr">
+    <a class="logo" href="index.html"><img src="./img/bg/logo-w.png" alt=""></a>
+    <button class="burger" aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+  </header>
+  
+  <nav class="menu" id="menu" aria-hidden="true">
+  <div class="menu-col--list">
+    <ul class="menu-list" id="menuList">
+      <li class="mi" data-img="../img/menu/7.png" data-href="index.html" data-theme="green">
+        <span class="t">Главная</span>
+        <span class="run">
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+        </span>
+        <small>home</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/2.png" data-href="about.html" data-theme="cherry">
+        <span class="t">О нас</span>
+        <span class="run">
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+        </span>
+        <small>about</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/1.png" data-href="team.html" data-theme="navy">
+        <span class="t">Наша команда</span>
+        <span class="run">
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+        </span>
+        <small>team</small>
+      </li>
+      <li class="mi" data-img="../img/menu/2.png" data-href="services.html" data-theme="">
+        <span class="t">Наши услуги</span>
+        <span class="run">
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+        </span>
+        <small>service</small>
+      </li>
+      <li class="mi" data-img="../img/menu/3.png" data-href="artists.html" data-theme="orange">
+        <span class="t">Артисты</span>
+        <span class="run">
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+        </span>
+        <small>artists</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/4.png" data-href="collectives.html" data-theme="black">
+        <span class="t">Коллективы</span>
+        <span class="run">
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+        </span>
+        <small>collectives</small>
+      </li>
+  <li class="mi" data-img="../img/menu/5.png" data-href="partner.html" data-theme="">
+        <span class="t">Партнёры</span>
+        <span class="run">
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+        </span>
+        <small>partner</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/6.png" data-href="contacts.html" data-theme="yellow">
+        <span class="t">Контакты</span>
+        <span class="run">
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+        </span>
+        <small>contacts</small>
+      </li>
+
+    </ul>
+  </div>
+
+  <aside class="menu-col--preview" id="previewCol">
+    <div class="ph-wrap"><img class="ph" id="ph" alt=""></div>
+  </aside>
+</nav>
+  <main>
+<section class="hero" id="hero">
+  <!-- Текстура для WebGL (измените src на свой бэкграунд при желании). 
+       По умолчанию пробует CLOCK.png из корня; можно заменить на фоновую картинку. -->
+  <img id="srcImg" src="img/bg/team.png" alt="" decoding="async" loading="eager" style="display:none">
+  <canvas id="ripple"></canvas>
+
+  <div class="hero__content">
+    <h1 class="hero-title">KOOF Agency</h1>
+    <div class="hero-sub">Hero-блок с волной WebGL и часами</div>
+
+    <div class="clocks" id="clockRow" aria-label="Мировое время"></div>
+  </div>
+</section>
+
+ <!-- ===== АННОТАЦИЯ ПЕРЕД КОМАНДОЙ ===== -->
+<section class="team-intro">
+  <img src="img/i-yellow.png" alt="">
+  <div class="team-intro__inner">
+    <h2 class="team-intro__title">Моя команда</h2>
+    <p class="team-intro__text">
+      Моя команда — это мои друзья. Это не просто профессионалы, а люди, которых я знаю много лет и в которых уверен.
+      Каждый из них — яркая личность, уникальный талант и сильная индивидуальность. Они талантливы не только как
+      музыканты, но и как творцы в самом широком смысле слова.  
+    </p>
+    <p class="team-intro__text">
+      Сухие строки биографии не способны передать, какими удивительными людьми они являются на самом деле. Мы объединены
+      не только общим делом, но и доверием, взаимным уважением, любовью к музыке и стремлением к совершенству.
+    </p>
+    <p class="team-intro__text">
+      Я горжусь каждым из них. Вместе мы — сильная команда, объединяющая творческую энергию, интеллект и опыт для того,
+      чтобы создавать и продвигать настоящее искусство.
+    </p>
+  </div>
+</section>
+
+<section class="items" id="teamItems">
+
+  <!-- 1 -->
+  <div class="card-block" data-href="suslenkov.html">
+    <article class="item depth-card">
+      <div class="item__layer bg" aria-hidden="true"></div>
+      <div class="item__layer portrait" aria-hidden="true">
+        <svg class="blob-svg" viewBox="0 0 1000 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="displacementFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" result="displacement" scale="100" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              <feMorphology operator="dilate" radius="2" result="morph" in="displacement"></feMorphology>
+            </filter>
+            <mask id="circleMask">
+              <circle cx="50%" cy="50%" r="0" data-final="950" fill="white" class="mask" style="filter:url(#displacementFilter);"></circle>
+            </mask>
+          </defs>
+          <image href="./img/team/4.png" width="1000" height="450" mask="url(#circleMask)"></image>
+        </svg>
+      </div>
+    </article>
+    <div class="card-info">
+      <h2 class="name">Сергей Сусленков</h2>
+      <p class="role">Директор, основатель агентства</p>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card-block" data-href="liet.html">
+    <article class="item depth-card">
+      <div class="item__layer bg"></div>
+      <div class="item__layer portrait">
+        <svg class="blob-svg" viewBox="0 0 1000 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="displacementFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" result="displacement" scale="100" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              <feMorphology operator="dilate" radius="2" result="morph" in="displacement"></feMorphology>
+            </filter>
+            <mask id="circleMask">
+              <circle cx="50%" cy="50%" r="0" data-final="950" fill="white" class="mask" style="filter:url(#displacementFilter);"></circle>
+            </mask>
+          </defs>
+          <image href="img/team/5.jpg" width="1000" height="450" mask="url(#circleMask)"></image>
+        </svg>
+      </div>
+    </article>
+    <div class="card-info">
+      <h2 class="name">Моник Лид</h2>
+      <p class="role">Помощник директора</p>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+      </div>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card-block" data-href="sablenko.html">
+    <article class="item depth-card">
+      <div class="item__layer bg"></div>
+      <div class="item__layer portrait">
+        <svg class="blob-svg" viewBox="0 0 1000 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="displacementFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" result="displacement" scale="100" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              <feMorphology operator="dilate" radius="2" result="morph" in="displacement"></feMorphology>
+            </filter>
+            <mask id="circleMask">
+              <circle cx="50%" cy="50%" r="0" data-final="950" fill="white" class="mask" style="filter:url(#displacementFilter);"></circle>
+            </mask>
+          </defs>
+          <image href="img/team/3.jpg" width="1000" height="450" mask="url(#circleMask)"></image>
+        </svg>
+      </div>
+    </article>
+    <div class="card-info">
+      <h2 class="name">Евгения Сабленко</h2>
+      <p class="role">Менеджер проектов</p>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+      </div>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card-block" data-href="krasavitsky.html">
+    <article class="item depth-card">
+      <div class="item__layer bg"></div>
+      <div class="item__layer portrait">
+        <svg class="blob-svg" viewBox="0 0 1000 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="displacementFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" result="displacement" scale="100" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              <feMorphology operator="dilate" radius="2" result="morph" in="displacement"></feMorphology>
+            </filter>
+            <mask id="circleMask">
+              <circle cx="50%" cy="50%" r="0" data-final="950" fill="white" class="mask" style="filter:url(#displacementFilter);"></circle>
+            </mask>
+          </defs>
+          <image href="img/team/4.jpg" width="1000" height="450" mask="url(#circleMask)"></image>
+        </svg>
+      </div>
+    </article>
+    <div class="card-info">
+      <h2 class="name">Лев Красавицкий</h2>
+      <p class="role">Руководитель московского филиала</p>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+      </div>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card-block" data-href="person-novikov.html">
+    <article class="item depth-card">
+      <div class="item__layer bg"></div>
+      <div class="item__layer portrait">
+        <svg class="blob-svg" viewBox="0 0 1000 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="displacementFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" result="displacement" scale="100" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              <feMorphology operator="dilate" radius="2" result="morph" in="displacement"></feMorphology>
+            </filter>
+            <mask id="circleMask">
+              <circle cx="50%" cy="50%" r="0" data-final="950" fill="white" class="mask" style="filter:url(#displacementFilter);"></circle>
+            </mask>
+          </defs>
+          <image href="img/team/novkov.jpg" width="1000" height="450" mask="url(#circleMask)"></image>
+        </svg>
+      </div>
+    </article>
+    <div class="card-info">
+      <h2 class="name">Алексей Новиков</h2>
+      <p class="role">Продюсер</p>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+      </div>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card-block" data-href="person-tyurin.html">
+    <article class="item depth-card">
+      <div class="item__layer bg"></div>
+      <div class="item__layer portrait">
+        <svg class="blob-svg" viewBox="0 0 1000 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="displacementFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" result="displacement" scale="100" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              <feMorphology operator="dilate" radius="2" result="morph" in="displacement"></feMorphology>
+            </filter>
+            <mask id="circleMask">
+              <circle cx="50%" cy="50%" r="0" data-final="950" fill="white" class="mask" style="filter:url(#displacementFilter);"></circle>
+            </mask>
+          </defs>
+          <image href="img/team/tiurin.jpg" width="1000" height="450" mask="url(#circleMask)"></image>
+        </svg>
+      </div>
+    </article>
+    <div class="card-info">
+      <h2 class="name">Андрей Тюрин</h2>
+      <p class="role">PR-директор</p>
+      <div class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+      </div>
+      <div class="card-line"></div>
+    </div>
+  </div>
+
+  <script>
+    // === ScrollTrigger для раскрытия круглой маски в каждой карточке ===
+    window.addEventListener('DOMContentLoaded', function(){
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.querySelectorAll('.blob-svg').forEach((svg, i) => {
+        const filt = svg.querySelector('filter#displacementFilter');
+        const mask = svg.querySelector('mask#circleMask');
+        const circle = svg.querySelector('circle.mask');
+        const img = svg.querySelector('image');
+        if (!filt || !mask || !circle || !img) return;
+
+        // уникальные id, чтобы url(#id) не конфликтовали
+        const suf = `-${i+1}`;
+        filt.id = `displacementFilter${suf}`;
+        mask.id = `circleMask${suf}`;
+        circle.style.filter = `url(#${filt.id})`;
+        img.setAttribute('mask', `url(#${mask.id})`);
+
+        const finalR = parseFloat(circle.dataset.final || '950');
+        const turb = filt.querySelector('feTurbulence');
+
+        circle.setAttribute('r', 0);
+        if (turb) turb.setAttribute('baseFrequency', '0.12');
+
+        ScrollTrigger.create({
+          trigger: svg.closest('.card-block'),
+          start: 'clamp(top bottom-=10%)',
+          end: '+=40%',
+          once: true,
+          onEnter: () => {
+            gsap.to(circle, {
+              attr: { r: finalR },
+              duration: 3.2,
+              ease: 'power3.out'
+            });
+            if (turb) {
+              gsap.to(turb, { attr: { baseFrequency: 0.03 }, duration: 2.2, ease: 'power2.out' });
+            }
+          }
+        });
+      });
+    });
+
+    // === ДВЕРИ: переход при клике на карточку ===
+    (function(){
+      const curtains = document.getElementById('curtains');
+      const DUR = parseFloat(getComputedStyle(document.documentElement)
+                   .getPropertyValue('--curtain-duration')) || 900;
+
+      // эффект «открыть» при загрузке
+      function openOnLoad(){
+        curtains.classList.add('closed');
+        requestAnimationFrame(()=>{ // следующий кадр — запустим открытие
+          requestAnimationFrame(()=>{
+            curtains.classList.remove('closed');
+          });
+        });
+      }
+      openOnLoad();
+
+      function go(url){
+        if (!url) return;
+        curtains.classList.add('closed');
+        setTimeout(()=>{ location.href = url; }, DUR + 50);
+      }
+
+      // делегирование клика по карточке
+      document.addEventListener('click', (e)=>{
+        const el = e.target.closest('.card-block,[data-href],a[href]');
+        if(!el) return;
+        const href = el.getAttribute('data-href') || el.getAttribute('href');
+        if(!href || href === '#') return;
+        e.preventDefault();
+        go(href);
+      }, {passive:false});
+    }());
+  </script>
+   <script src="js/menu.js"></script>
+<script src="js/doors.js"></script>
+
+  <script src="js/wave.js"></script>
+
+
+</section></main></body></html>

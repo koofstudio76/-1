@@ -1,0 +1,92 @@
+:root{
+  --bg:#000; --text:#fff; --muted:#ffffffcc;
+  --accent:#ff3b2f; --accent2:#ff6a00;
+  --radius:24px; --shadow:0 30px 100px rgba(0,0,0,.6);
+  --container: 90vw;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+
+.container{width:var(--container); margin:0 auto; padding: clamp(14px,3vw,28px)}
+
+.topbar{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px) saturate(120%);
+  background:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.15)); border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar .brand{font-weight:800; letter-spacing:.3px}
+.topbar .subtitle{opacity:.85}
+
+.cards-grid{display:grid; gap: clamp(20px,3vw,36px); grid-template-columns: repeat(3,1fr)}
+@media (max-width: 1000px){ .cards-grid{grid-template-columns: repeat(2,1fr)} }
+@media (max-width: 680px){ .cards-grid{grid-template-columns: 1fr} }
+
+/* === 3D CARD === */
+.card{outline: none; cursor: pointer}
+.card-3d{
+  position:relative; border-radius: var(--radius); overflow:hidden; min-height: 88vh; box-shadow: var(--shadow);
+  transform-style: preserve-3d; will-change: transform; perspective: 1200px;
+  background:#111;
+}
+.card-3d .parallax-layer{ position:absolute; inset:0; transform-style:preserve-3d; will-change: transform }
+.card-bg img{ width:100%; height:80vh; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02) }
+.card-overlay{ background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.6) 65%, rgba(0,0,0,.9)); mix-blend-mode: normal }
+.card-glow{
+  background: radial-gradient(60% 60% at 60% 40%, rgba(255,255,255,.15), transparent 60%),
+              radial-gradient(40% 40% at 40% 70%, rgba(255,255,255,.12), transparent 60%);
+  filter: blur(26px); opacity:.9; pointer-events:none;
+}
+.card-content{
+  display:flex; flex-direction:column; justify-content:flex-end; padding: clamp(18px,3vw,28px); gap:6px; z-index:2
+}
+.card .name{ font-size: clamp(22px,3.2vw,44px); font-weight: 900; margin:0; text-shadow: 0 8px 24px rgba(0,0,0,.45), 0 2px 2px rgba(0,0,0,.5) }
+.card .role{ font-size: clamp(14px,1.6vw,20px); opacity:.95; margin:0 }
+
+.card-arrow{
+  position:absolute; left:50%; bottom:14px; transform: translateX(-50%); appearance:none; border:0;
+  background: rgba(0,0,0,.5); color:#fff; padding:10px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,.4);
+  transition: transform .2s ease, background .2s ease; pointer-events:none; /* только для подсказки */
+}
+.card:hover .card-arrow{ transform: translateX(-50%) translateY(-2px) }
+
+.card:focus-visible{ outline:2px solid #fff; outline-offset:2px }
+
+.footer-note{opacity:.7; padding-top: 8px}
+
+/* === PERSON PAGE === */
+.person-hero{
+  display:grid; grid-template-columns: 1fr 1fr; gap: clamp(16px,3vw,32px); align-items: stretch;
+  margin-top: clamp(12px,2vw,20px);
+}
+.person-hero .photo-wrap{ position:relative; width:100%; height:auto; aspect-ratio: 4/5; border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow); background:#111 }
+.person-hero img{ width:100%; height:100%; object-fit: cover; display:block }
+.person-hero .title{
+  display:flex; align-items:flex-end; justify-content:flex-start; padding: clamp(20px,4vw,40px);
+}
+.person-hero .title h1{ font-size: clamp(28px,4.5vw,72px); line-height:1.02; margin: 0 0 .2em 0; font-weight: 900 }
+.person-hero .title .role{ font-size: clamp(18px,2.2vw,34px); opacity:.95; margin:0 }
+
+/* Горизонтальный аккордеон: кнопки в ряд, контент ниже */
+.accordion{ margin-top: clamp(20px,3vw,36px) }
+.accordion-tabs{ display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom: 8px }
+.accordion-tabs button{
+  appearance:none; border:1px solid rgba(255,255,255,.18); background: transparent; color:#fff; padding:10px 14px; border-radius:12px;
+  font-weight:700; cursor:pointer
+}
+.accordion-tabs button[aria-selected="true"]{ background: linear-gradient(90deg, var(--accent), var(--accent2)); border-color: transparent }
+.accordion-panel{ display:none; padding: clamp(12px,2vw,18px) 0 }
+.accordion-panel[data-open="true"]{ display:block }
+
+.duo{
+  display:grid; grid-template-columns: 1fr 1fr; gap: clamp(16px,3vw,32px); align-items:start; margin-top: clamp(20px,3vw,36px)
+}
+.duo iframe{ width:100%; aspect-ratio:16/9; border:0; border-radius:16px; box-shadow: var(--shadow) }
+
+/* Слайдер (сценические образы) */
+.slider{ margin-top: clamp(20px,3vw,36px) }
+.slider .track{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px }
+.slider .track img{ height:160px; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,.45); scroll-snap-align:start }
+.slider .controls{ display:flex; gap:8px; margin-top:10px }
+.slider .controls button{ appearance:none; border:1px solid rgba(255,255,255,.2); background:transparent; color:#fff; padding:8px 12px; border-radius:10px; cursor:pointer }
+
+@media (max-width: 920px){
+  .person-hero{ grid-template-columns: 1fr }
+}

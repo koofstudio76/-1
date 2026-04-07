@@ -1,0 +1,33 @@
+  :root{
+    --gear-size: 140px;   /* диаметр шестерёнки в слайдах */
+    --spin-outer: 6s;
+    --spin-inner: 3.6s;
+  }
+  .gear-btn{
+    position:relative; display:inline-grid; place-items:center;
+    width:var(--gear-size); height:var(--gear-size); text-decoration:none; cursor:pointer;
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,.5));
+  }
+  .gear-btn .outer svg{ width:100%; height:100%; display:block; animation:spin var(--spin-outer) linear infinite; }
+  .gear-btn .inner{ position:absolute; width:62%; height:62%; }
+  .gear-btn .inner svg{ width:100%; height:100%; animation:spinrev var(--spin-inner) linear infinite; }
+  .gear-btn .ring{ position:absolute; inset:0; padding:5%; pointer-events:none; }
+  .gear-btn .ring text{
+    font:700 13px/1 "DejaVu Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    letter-spacing:.14em; text-transform:uppercase;
+    fill:url(#goldFill); paint-order:stroke; stroke:#5b4315; stroke-width:1.2px;
+  }
+  .gear-btn:hover .outer svg{ animation-duration:3.6s }
+  .gear-btn:hover .inner svg{ animation-duration:2.4s }
+  @keyframes spin{ to{ transform:rotate(360deg) } }
+  @keyframes spinrev{ to{ transform:rotate(-360deg) } }
+
+  /* Слой дверей для перехода */
+  .doors{ position:fixed; inset:0; z-index:10000; pointer-events:none; display:none; }
+  .door{ position:absolute; top:0; width:50%; height:100%;
+         background:linear-gradient(#6b4a1a,#4e3512);
+         box-shadow:inset 0 0 0 2px rgba(255,230,170,.35), 0 0 24px rgba(0,0,0,.55); }
+  .door.left{ left:-50%; } .door.right{ right:-50%; }
+  .doors.active{ display:block; }
+  .doors.closing .door.left{ animation:doorInLeft .6s ease forwards; }
+  .doors.closing .door.right{ animation:doorInRight .6s ease forwards;

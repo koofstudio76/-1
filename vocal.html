@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Room Exhibition | Codrops</title>
+  <meta name="description"
+    content="An experimental 3D room template that aims to show exhibition details in an interesting way" />
+  <meta name="keywords" content="3d, room, exhibition, gallery, perspective, animation, web design, template" />
+  <meta name="author" content="Codrops" />
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/wave.css">
+
+  <link rel="stylesheet" href="css/artists.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+  <script>
+    document.documentElement.className = 'js';
+  </script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="bar">
+    <nav class="bar__left" aria-label="Main">
+      <a class="navlink" href="contacts.html">Contacts</a>
+      <button class="navbtn" data-open="agency" aria-controls="agencyMenu" aria-expanded="false">Agency ▾</button>
+    </nav>
+    <div class="bar__right">
+<div class="search-wrap" id="searchWrap">
+  <button class="iconbtn search-btn" id="searchBtn" aria-expanded="false" aria-controls="searchPop" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M8.5 2a6.5 6.5 0 1 1-1.4 12.9l-3.7 3.7a1 1 0 0 1-1.4-1.4l3.7-3.7A6.5 6.5 0 0 1 8.5 2zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <div class="search-pop" id="searchPop" role="dialog" aria-label="Search" hidden>
+    <form class="search-form" action="/search" method="GET">
+      <input class="search-input" type="search" name="q" placeholder="Search…" autocomplete="on" enterkeyhint="search" />
+      <button class="iconbtn submit-btn" aria-label="Submit search" type="submit">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M2 10h14M10 2l6 8-6 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+      <button class="cart" aria-label="Cart"><span class="cart__count">0</span></button>
+      <a class="logo" href="index.html" aria-label="Home">HILL</a>
+    </div>
+  </div>
+</header>
+
+<!-- Overlay + dropdown panel -->
+<div class="mega" id="agencyMenu" role="dialog" aria-modal="true" hidden>
+  <div class="mega__panel">
+    <!-- Колонка 1 -->
+    <section class="group">
+      <h3 class="group__title">Artists</h3>
+      <ul class="list">
+        <li><a href="conductors.html" class="item">Conductors</a></li>
+        <li><a href="vocal.html" class="item">Vocalists</a></li>
+        <li><a href="collectives.html" class="item">Ensembles</a></li>
+        <li><a href="collectives.html" class="item">Collectives</a></li>
+        <li><a href="artists.html" class="item">Musicians</a></li>
+      </ul>
+    </section>
+
+    <!-- Колонка 2 -->
+    <section class="group">
+      <h3 class="group__title">About</h3>
+      <ul class="list">
+        <li><a href="about.html" class="item">About Us</a></li>
+        <li><a href="team.html" class="item">Team</a></li>
+        <li><a href="team.html" class="item">Clients</a></li>
+        <li><a href="partner.html" class="item">Partners</a></li>
+      </ul>
+    </section>
+
+    <!-- Колонка 3 -->
+    <section class="group">
+      <h3 class="group__title">Services</h3>
+      <ul class="list">
+        <li><a href="services.html" class="item">All Services</a></li>
+        <!-- при необходимости — разверните список услуг -->
+        <!-- <li><a href="services.html" class="item">Event Booking</a></li> -->
+        <!-- <li><a href="services.html" class="item">Tour Management</a></li> -->
+      </ul>
+    </section>
+
+    <button class="mega__close" type="button" aria-label="Close">✕</button>
+  </div>
+  <div class="mega__overlay" data-close></div>
+</div>
+
+<!-- Кастомный курсор: два кольца с текстом + центр -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <svg class="cursor__svg" viewBox="0 0 100 100">
+    <defs>
+      <path id="ringInner" d="M50,50 m-22,0 a22,22 0 1,1 44,0 a22,22 0 1,1 -44,0"/>
+      <path id="ringOuter" d="M50,50 m-34,0 a34,34 0 1,1 68,0 a34,34 0 1,1 -68,0"/>
+    </defs>
+    <text class="cursor__text cursor__text--inner">
+      <textPath href="#ringInner">PUSH·IT·PUSH·IT·PUSH·IT·</textPath>
+    </text>
+    <text class="cursor__text cursor__text--outer">
+      <textPath href="#ringOuter">PUSH·IT·PUSH·IT·PUSH·IT·PUSH·IT·</textPath>
+    </text>
+    <circle class="cursor__stroke" cx="50" cy="50" r="18" fill="none"/>
+    <circle class="cursor__stroke cursor__stroke--outer" cx="50" cy="50" r="34" fill="none"/>
+  </svg>
+</div>
+
+  <div class="social-left">
+        <a href="https://id.vk.com/account/#/personal"> <img src="img/icons/vk.png" alt=""></a>
+        <a href=""> <img src="img/icons/yt.png" alt=""></a>
+  </div>
+ <div class="lang-switch">
+      <a href=""> <img src="img/icons/ch.png" alt=""></a>
+      <a href=""> <img src="img/icons/ru.png" alt=""></a>
+      <a href=""> <img src="img/icons/vi.png" alt=""></a>
+      <a href=""> <img src="img/icons/ai.png" alt=""></a>
+
+    </div>
+  <!-- <div class="contact-bottom">
+    <a href="mailto:">Mail</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Skype</a>
+  </div> -->
+
+
+ <section class="kof-floor-scene">
+  <div class="scene">
+    <!-- глянцевый «пол» -->
+    <div class="floor" aria-hidden="true"></div>
+
+    <!-- группа с текстом (чуть наклонена в перспективе) -->
+    <div class="stack">
+      <div class="logo">
+        <h1 class="metal-silver big"> VOCALISTS</h1>
+      </div>
+
+      <!-- отражение в «полу» -->
+      <div class="logo logo--reflection" aria-hidden="true">
+        <h1 class="metal-silver big">VOCALISTS</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </section>
+  <!-- ====== About (блок 2, белый фон, золотистые буквы) ====== -->
+
+
+  <main class="container cards-grid">
+    <!-- Карточка: Максим Аниськин -->
+    <article class="card" tabindex="0" data-href="person-aniskin.html" aria-label="Открыть страницу Максима Аниськина">
+      <div class="card-3d">
+        <div class="card-bg parallax-layer" data-depth="0.2">
+          <img src="img/clients/4.png" alt="Максим Аниськин" loading="lazy">
+        </div>
+        <div class="card-overlay parallax-layer" data-depth="0.35"></div>
+        <div class="card-content parallax-layer" data-depth="0.6">
+          <h2 class="name">Максим Аниськин</h2>
+          <p class="role">Баритон</p>
+        </div>
+        <div class="card-glow parallax-layer" data-depth="0.1"></div>
+        <button class="card-arrow" aria-hidden="true" tabindex="-1">
+          <!-- SVG-стрелка вниз -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </article>
+
+    <!-- Карточка: Ксения Мусланова -->
+    <article class="card" tabindex="0" data-href="person-muslanova.html" aria-label="Открыть страницу Ксении Муслановой">
+      <div class="card-3d">
+        <div class="card-bg parallax-layer" data-depth="0.2">
+          <img src="img/clients/5.png" alt="Ксения Мусланова" loading="lazy">
+        </div>
+        <div class="card-overlay parallax-layer" data-depth="0.35"></div>
+        <div class="card-content parallax-layer" data-depth="0.6">
+          <h2 class="name">Ксения Мусланова</h2>
+          <p class="role">Сопрано</p>
+        </div>
+        <div class="card-glow parallax-layer" data-depth="0.1"></div>
+        <button class="card-arrow" aria-hidden="true" tabindex="-1">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </article>
+
+   
+  
+  
+    <main class="cards" id="cards"></main>
+
+    <!-- DETAIL OVERLAYS -->
+    <div id="overlays"></div>
+
+    <script src="js/artists.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/hero.js"></script>
+
+</body>
+</html>

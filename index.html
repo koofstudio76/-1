@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en"><head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+    <link rel="stylesheet" href="css/bottom.css">
+	<script src="libs/btn/anim-menu-btn.min.js" defer=""></script>
+	<link rel="stylesheet" href="libs/swiper/swiper-bundle.min.css">
+	<script src="libs/swiper/swiper-bundle.min.js" defer=""></script>
+ 	<link rel="stylesheet" href="css/main.css">
+	<script src="js/app.js" defer=""></script>
+	  <script src="js/menu.js" defer=""></script>
+
+
+  <!-- GSAP + ScrollTrigger только для карточек -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer=""></script>
+
+</head>
+<body>
+
+  
+<!-- Doors / Curtains overlay -->
+<div class="curtains" id="curtains" aria-hidden="true">
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+  <div class="curtains__brand" id="curtainsBrand" aria-hidden="true">
+    <span class="brand-title">KOOF Studio</span>
+  </div>
+</div>
+
+
+  <!-- Фиксированный хедер -->
+  <header class="hdr">
+    <a class="logo" href="index.html"><img src="./img/bg/logo-w.png" alt=""></a>
+    <button class="burger" aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+  </header>
+<nav class="menu" id="menu" aria-hidden="true">
+  <div class="menu-col--list">
+    <ul class="menu-list" id="menuList">
+      <li class="mi" data-img="../img/menu/7.png" data-href="index.html" data-theme="green">
+        <span class="t">Главная</span>
+        <span class="run">
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+        </span>
+        <small>home</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/2.png" data-href="about.html" data-theme="cherry">
+        <span class="t">О нас</span>
+        <span class="run">
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+        </span>
+        <small>about</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/1.png" data-href="team.html" data-theme="navy">
+        <span class="t">Наша команда</span>
+        <span class="run">
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+        </span>
+        <small>team</small>
+      </li>
+      <li class="mi" data-img="../img/menu/2.png" data-href="services.html" data-theme="">
+        <span class="t">Наши услуги</span>
+        <span class="run">
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+        </span>
+        <small>service</small>
+      </li>
+      <li class="mi" data-img="../img/menu/3.png" data-href="artists.html" data-theme="orange">
+        <span class="t">Артисты</span>
+        <span class="run">
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+        </span>
+        <small>artists</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/4.png" data-href="collectives.html" data-theme="black">
+        <span class="t">Коллективы</span>
+        <span class="run">
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+        </span>
+        <small>collectives</small>
+      </li>
+  <li class="mi" data-img="../img/menu/5.png" data-href="partner.html" data-theme="">
+        <span class="t">Партнёры</span>
+        <span class="run">
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+        </span>
+        <small>partner</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/6.png" data-href="contacts.html" data-theme="yellow">
+        <span class="t">Контакты</span>
+        <span class="run">
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+        </span>
+        <small>contacts</small>
+      </li>
+
+    </ul>
+  </div>
+
+  <aside class="menu-col--preview" id="previewCol">
+    <div class="ph-wrap"><img class="ph" id="ph" alt=""></div>
+  </aside>
+</nav>
+  <div class="swiper slider">
+
+		<div class="slider-ui">
+
+			<div class="container header-wrapper">
+
+				<div class="top-line">
+
+					<div class="row">
+
+					</div>
+
+				</div>
+
+				<div class="header-content">
+
+					<div class="header-content__slide active">
+						<h1 class="letters">KOOF AGENCY</h1>
+						<div class="header-content__info"></div>
+					</div>
+
+					<div class="header-content__slide">
+						<h1 class="letters">О НАС</h1>
+						<div class="header-content__info">
+                 <a href="about.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>
+						</div>
+					</div>
+          					<div class="header-content__slide">
+						<h1 class="letters" style="margin-top: -25vh;">НАША КОМАНДА</h1>
+						<div class="header-content__info">
+  <a href="team.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>						</div>
+					</div>
+ 			<div class="header-content__slide">
+						<h1 class="letters">НАШИ УСЛУГИ</h1>
+						<div class="header-content__info">
+                 <a href="services.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>
+						</div>
+					</div>
+					<div class="header-content__slide">
+						<h1 class="letters">АРТИСТЫ</h1>
+						<div class="header-content__info">
+                 <a href="artists.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>
+						</div>
+					</div>
+
+					<div class="header-content__slide">
+						<h1 class="letters">КОЛЛЕКТИВЫ</h1>
+						<div class="header-content__info">
+                 <a href="collectives.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>
+						</div>
+					</div>
+	<div class="header-content__slide">
+						<h1 class="letters">ПАРТНЕРЫ</h1>
+						<div class="header-content__info">
+                 <a href="partner.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>
+						</div>
+					</div>	<div class="header-content__slide">
+						<h1 class="letters">КОНТАКТЫ</h1>
+						<div class="header-content__info">
+                 <a href="contacts.html" class="gear-btn gear-link" aria-label="Далее">
+                   <span class="outer"><img class="img_ring" src="./img/ring.png" width="100%" alt=""></span>
+                   <span class="inner"><img class="img_ring" src="./img/ring-1.png" width="100%" alt=""></span>
+                   <span class="ring" aria-hidden="true"><img class="img_ring" src="./img/ring text.png" width="100%"></span>
+                 </a>
+						</div>
+					</div>
+				</div>
+
+				<div class="header-bottom">
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="swiper-wrapper">
+
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/slide-1-layer-back.jpg);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/slide-1-layer-middle.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slide-1-layer-front.png);"></div>
+			</div>
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/slide-2-layer-back.jpg);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/slide-2-layer-middle.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slide-2-layer-front.png);"></div>
+			</div>
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/3-back.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/4.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/5.png);background-position: left;"></div>
+			</div>
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/6.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/7.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/ide-3-layer-front.png);"></div>
+			</div>
+			<div class="swiper-slide slider__item">     
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/6.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/8.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slid-3-layer-front.png);"></div>
+			</div>
+	<div class="swiper-slide slider__item">     
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/9.png);"></div>
+				<!-- <div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/8.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slid-3-layer-front.png);"></div> -->
+			</div>
+	<div class="swiper-slide slider__item">     
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/10.png);"></div>
+				<!-- <div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/8.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slid-3-layer-front.png);"></div> -->
+			</div>
+	<div class="swiper-slide slider__item">     
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/1.png);"></div>
+				<!-- <div class="slider__layer" data-swiper-parallax="25%" style="backgroundИ-image: url(img/slides/8.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="backgroundC-image: url(img/slides/slid-3-layer-front.png);"></div> -->
+			</div>
+
+		</div>
+
+	</div>
+
+<script>
+(function(){
+  const BTN_SEL = '.gearbtn';
+  const SPEED = {idle:'idle', hover:'hover', down:'down'};
+
+  function setup(btn){
+    // подпись из data-label
+    const label = btn.querySelector('.gearbtn__label');
+    label.textContent = (btn.getAttribute('data-label') || 'PUSH').toUpperCase();
+
+    // стартовое состояние
+    btn.dataset.state = SPEED.idle;
+
+    // появление (без GSAP)
+    function readyPlain(){
+      btn.classList.add('is-ready','is-enter');
+      requestAnimationFrame(()=>{ requestAnimationFrame(()=>{
+        btn.classList.add('is-in');
+        btn.classList.remove('is-enter');
+      });});
+    }
+
+    // GSAP ScrollTrigger (если подключен)
+    const onReady = (window.gsap && window.ScrollTrigger) ? () => {
+      btn.classList.add('is-ready','is-enter');
+      gsap.to(btn, {
+        duration: .6, y: 0, scale: .94, ease: 'power3.out',
+        onStart(){ btn.classList.add('is-in'); btn.classList.remove('is-enter'); },
+        scrollTrigger:{
+          trigger: btn,
+          start: 'top 90%',
+          once: true
+        }
+      });
+    } : readyPlain;
+
+    onReady();
+
+    // hover/leave
+    btn.addEventListener('mouseenter', ()=> btn.dataset.state = SPEED.hover);
+    btn.addEventListener('mouseleave', ()=> btn.dataset.state = SPEED.idle);
+
+    // down/up
+    btn.addEventListener('mousedown', ()=> btn.dataset.state = SPEED.down);
+    btn.addEventListener('mouseup',   ()=> btn.dataset.state = SPEED.hover);
+
+    // click → переход
+    btn.addEventListener('click', (e)=>{
+      const href = btn.getAttribute('data-href');
+      if(!href) return;
+      e.preventDefault();
+
+      // Анимация ускорения перед переходом
+      btn.dataset.state = SPEED.down;
+
+      // если используешь «двери» (шторки) — просто дерни клик-перехватчик
+      const curtains = document.getElementById('curtains');
+      const DUR = 900; // синхронизируй с --curtain-duration
+      if (curtains && curtains.classList){
+        curtains.classList.add('closed');               // закрыли двери
+        setTimeout(()=> location.href = href, DUR + 80);
+      } else {
+        // просто переход с небольшим ожиданием визуала
+        setTimeout(()=> location.href = href, 240);
+      }
+    });
+  }
+
+  document.querySelectorAll(BTN_SEL).forEach(setup);
+})();
+</script>
+
+
+</body></html>

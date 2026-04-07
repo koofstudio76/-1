@@ -1,0 +1,48 @@
+/* Сетка часов — оставил как было */
+.tz-clocks{
+  position: fixed;
+  top: 90%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px; align-items: start;
+  max-width: 900px; margin: 0 auto;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* КОРПУС: фон только картинкой циферблата */
+body .clock{
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 12vh;
+  height: 12vh;;
+  border-radius: 50%;
+  background: url('img/bg/clock.png') center / cover no-repeat; /* <- твой PNG */
+  border: 0;               /* убрали декоративную рамку */
+  overflow: visible;
+}
+.clock img{width: 12vh;position: relative;}
+
+/* СТРЕЛКИ */
+.hand{
+  position: absolute;
+  left: 50%; top: 50%;
+  transform-origin: 50% 90%;
+  transform: translate(-50%, -90%) rotate(0deg);
+  border-radius: 2px;
+}
+.hand--h{ width: 6px; height: 28%; background: #222; }
+.hand--m{ width: 4px; height: 38%; background: #222; }
+.hand--s{ width: 2px; height: 44%; background: #c0392b; }
+
+/* ЦЕНТР */
+.pivot{
+  position: absolute; left: 50%; top: 50%;
+  width: 10px; height: 10px; background: #ff6464; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 3px #fff inset;
+}
+
+/* УДАЛЕНО: всё, что относилось к циферблату
+   .clock__label, .tick, .tick--bold, .num[...] и любые границы/подписи */
+body{background-color: red ;}

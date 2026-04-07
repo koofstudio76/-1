@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="ru"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KOOF — Cards + Doors</title>
+  <link rel="stylesheet" href="css/main.css">
+ 
+  <link rel="stylesheet" href="css/wave.css">
+ </head>
+<body>
+
+  
+<div class="curtains" id="curtains" aria-hidden="true">
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+  <div class="curtains__brand" id="curtainsBrand" aria-hidden="true">
+    <span class="brand-title">KOOF Studio</span>
+  </div>
+</div>
+
+
+  <!-- Фиксированный хедер -->
+  <header class="hdr">
+    <a class="logo" href="index.html"><img src="./img/bg/logo-w.png" alt=""></a>
+    <button class="burger" aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+  </header>
+<nav class="menu" id="menu" aria-hidden="true">
+  <div class="menu-col--list">
+    <ul class="menu-list" id="menuList">
+      <li class="mi" data-img="../img/menu/7.png" data-href="index.html" data-theme="green">
+        <span class="t">Главная</span>
+        <span class="run">
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+        </span>
+        <small>home</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/2.png" data-href="about.html" data-theme="cherry">
+        <span class="t">О нас</span>
+        <span class="run">
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+        </span>
+        <small>about</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/1.png" data-href="team.html" data-theme="navy">
+        <span class="t">Наша команда</span>
+        <span class="run">
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+        </span>
+        <small>team</small>
+      </li>
+      <li class="mi" data-img="../img/menu/2.png" data-href="services.html" data-theme="">
+        <span class="t">Наши услуги</span>
+        <span class="run">
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+        </span>
+        <small>service</small>
+      </li>
+      <li class="mi" data-img="../img/menu/3.png" data-href="artists.html" data-theme="orange">
+        <span class="t">Артисты</span>
+        <span class="run">
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+        </span>
+        <small>artists</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/4.png" data-href="collectives.html" data-theme="black">
+        <span class="t">Коллективы</span>
+        <span class="run">
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+        </span>
+        <small>collectives</small>
+      </li>
+  <li class="mi" data-img="../img/menu/5.png" data-href="partner.html" data-theme="">
+        <span class="t">Партнёры</span>
+        <span class="run">
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+        </span>
+        <small>partner</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/6.png" data-href="contacts.html" data-theme="yellow">
+        <span class="t">Контакты</span>
+        <span class="run">
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+        </span>
+        <small>contacts</small>
+      </li>
+
+    </ul>
+  </div>
+
+  <aside class="menu-col--preview" id="previewCol">
+    <div class="ph-wrap"><img class="ph" id="ph" alt=""></div>
+  </aside>
+</nav>
+ 
+ 
+
+<!-- ========================== -->
+<!-- БЛОК 2: ЧЕМ МЫ ЗАНИМАЕМСЯ -->
+<!-- ========================== -->
+
+<section class="intro-about">
+  <div class="intro-about__inner">
+
+    <div class="intro-about__titlebox">
+      <h2 class="intro-about__title">Чем&nbsp;мы&nbsp;занимаемся</h2>
+    </div>
+
+    <div class="intro-about__photo">
+      <img src="./assets/about/9.png" alt="Работа команды KOOF Agency">
+    </div>
+
+    <div class="intro-about__text">
+      <p>
+        Мы строим продюсерскую экосистему, где артист чувствует, что за ним стоит команда.  
+        <strong>KOOF AGENCY</strong> объединяет продвижение, PR, организацию концертов и творческое сопровождение.  
+        Мы не просто посредники — мы партнёры, которые разделяют ответственность за успех каждого проекта.
+      </p>
+    </div>
+  </div>
+</section>
+  
+
+<div class="page">
+  <aside class="left" id="left2">
+    <nav class="railmenu" data-role="railmenu" aria-label="Меню раздела">
+      <a href="#media" data-target="media" class="is-active">Медийное продвижение</a>
+      <a href="#communication" data-target="communication">Коммуникации и связи</a>
+      <a href="#opportunities" data-target="opportunities">Организация возможностей</a>
+      <a href="#logistics" data-target="logistics">Логистика и сопровождение</a>
+    </nav>
+
+    <div class="left-slider" aria-hidden="true">
+      <div class="slides">
+        <div class="slide slide--media is-active" data-key="media"></div>
+        <div class="slide slide--communication" data-key="communication"></div>
+        <div class="slide slide--opportunities" data-key="opportunities"></div>
+        <div class="slide slide--logistics" data-key="logistics"></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="right" id="right2">
+    <section class="section" id="media" data-key="media">
+      <div class="kicker">Раздел 1</div>
+      <h2 class="title">Медийное продвижение</h2>
+      <p class="text">
+        Подготовка медиакейсов: фото, видео, биографии, афиши.  
+        Создание персональных страниц артистов и цифровых портфолио.  
+        PR-кампании, публикации в СМИ и социальных сетях, работа с имиджем артиста.
+      </p>
+    </section>
+
+    <section class="section" id="communication" data-key="communication">
+      <div class="kicker">Раздел 2</div>
+      <h2 class="title">Коммуникации и связи</h2>
+      <p class="text">
+        Мы выстраиваем контакт между артистами, агентствами и площадками.  
+        Переписка, рассылки, переговоры, организация прослушиваний и встреч.  
+        Налаживаем профессиональные связи с дирекциями театров, оркестров и фестивалей.
+      </p>
+    </section>
+
+    <section class="section" id="opportunities" data-key="opportunities">
+      <div class="kicker">Раздел 3</div>
+      <h2 class="title">Организация возможностей</h2>
+      <p class="text">
+        Мы создаём площадки для роста: подбираем конкурсы, фестивали, резиденции,  
+        организуем гастроли, мастер-классы и совместные проекты.  
+        Каждый артист получает реальный маршрут развития.
+      </p>
+    </section>
+
+    <section class="section" id="logistics" data-key="logistics">
+      <div class="kicker">Раздел 4</div>
+      <h2 class="title">Логистика и сопровождение</h2>
+      <p class="text">
+        Мы берём на себя всё — от билетов и виз до партитур и инструментов.  
+        Помогаем артистам чувствовать уверенность в любой точке мира.  
+        Работаем с вниманием к деталям и с уважением к артистическому времени.
+      </p>
+    </section>
+  </main>
+</div>
+
+<script src="js/sticki.js"></script>
+
+<script src="js/menu.js"></script>
+</body></html>

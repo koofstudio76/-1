@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>KOOF — Cards + Doors</title>
+  
+  <link rel="stylesheet" href="css/main.css"/>
+ <link rel="stylesheet" href="css/wave.css">
+
+</head>
+<body>
+
+<div class="curtains" id="curtains" aria-hidden="true">
+    <div class="panel left"></div>
+    <div class="panel right"></div>
+    <div class="curtains__brand" id="curtainsBrand" aria-hidden="true">
+      <span class="brand-title">KOOF Studio</span>
+   </div>
+</div>
+  <header class="hdr">
+    <a class="logo" href="#"><img src="./img/bg/logo-w.png" alt=""></a>
+    <button class="burger" aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+  </header>
+<nav class="menu" id="menu" aria-hidden="true">
+  <div class="menu-col--list">
+    <ul class="menu-list" id="menuList">
+      <li class="mi" data-img="../img/menu/7.png" data-href="index.html" data-theme="green">
+        <span class="t">Главная</span>
+        <span class="run">
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+          <span class="track">Главная<span class="sep">•</span>首页<span class="sep">•</span>Trang chủ<span class="sep">•</span>Home<span class="sep">•</span><span dir="rtl">الرئيسية</span></span>
+        </span>
+        <small>home</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/2.png" data-href="about.html" data-theme="cherry">
+        <span class="t">О нас</span>
+        <span class="run">
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+          <span class="track">О нас<span class="sep">•</span>关于我们<span class="sep">•</span>Về chúng tôi<span class="sep">•</span>About us<span class="sep">•</span><span dir="rtl">عنا</span></span>
+        </span>
+        <small>about</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/1.png" data-href="team.html" data-theme="navy">
+        <span class="t">Наша команда</span>
+        <span class="run">
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+          <span class="track">Команда<span class="sep">•</span>团队<span class="sep">•</span>Đội ngũ<span class="sep">•</span>Team<span class="sep">•</span><span dir="rtl">الفريق</span></span>
+        </span>
+        <small>team</small>
+      </li>
+      <li class="mi" data-img="../img/menu/2.png" data-href="services.html" data-theme="">
+        <span class="t">Наши услуги</span>
+        <span class="run">
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+          <span class="track">Наши услуги<span class="sep">•</span>我们的服务<span class="sep">•</span>Dịch vụ của chúng tôi<span class="sep">•</span>Service<span class="sep">•</span><span dir="rtl">خدماتنا</span></span>
+        </span>
+        <small>service</small>
+      </li>
+      <li class="mi" data-img="../img/menu/3.png" data-href="artists.html" data-theme="orange">
+        <span class="t">Артисты</span>
+        <span class="run">
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+          <span class="track">Артисты<span class="sep">•</span>艺术家<span class="sep">•</span>Nghệ sĩ<span class="sep">•</span>Artists<span class="sep">•</span><span dir="rtl">الفنانون</span></span>
+        </span>
+        <small>artists</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/4.png" data-href="collectives.html" data-theme="black">
+        <span class="t">Коллективы</span>
+        <span class="run">
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+          <span class="track">Коллективы<span class="sep">•</span>乐团<span class="sep">•</span>Tập thể<span class="sep">•</span>Collectives<span class="sep">•</span>الفرق</span>
+        </span>
+        <small>collectives</small>
+      </li>
+  <li class="mi" data-img="../img/menu/5.png" data-href="partner.html" data-theme="">
+        <span class="t">Партнёры</span>
+        <span class="run">
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+          <span class="track">Партнёры<span class="sep">•</span>合作伙伴<span class="sep">•</span>Đối tác<span class="sep">•</span>Partner<span class="sep">•</span><span dir="rtl">الشريك</span></span>
+        </span>
+        <small>partner</small>
+      </li>
+
+      <li class="mi" data-img="../img/menu/6.png" data-href="contacts.html" data-theme="yellow">
+        <span class="t">Контакты</span>
+        <span class="run">
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+          <span class="track">Контакты<span class="sep">•</span>联系我们<span class="sep">•</span>Liên hệ<span class="sep">•</span>Contacts<span class="sep">•</span>جهات الاتصال</span>
+        </span>
+        <small>contacts</small>
+      </li>
+
+    </ul>
+  </div>
+
+  <aside class="menu-col--preview" id="previewCol">
+    <div class="ph-wrap"><img class="ph" id="ph" alt=""></div>
+  </aside>
+</nav>
+ 
+  <main>
+    
+  
+<section class="hero" id="hero">
+  <!-- Текстура для WebGL (измените src на свой бэкграунд при желании). 
+       По умолчанию пробует CLOCK.png из корня; можно заменить на фоновую картинку. -->
+  <img id="srcImg" src="img/bg/about.png" alt="" decoding="async" loading="eager" style="display:none">
+  <canvas id="ripple"></canvas>
+
+  <div class="hero__content">
+    <h1 class="hero-title">KOOF Agency</h1>
+    <div class="hero-sub">Hero-блок с волной WebGL и часами</div>
+
+    <div class="clocks" id="clockRow" aria-label="Мировое время"></div>
+  </div>
+</section>
+
+<section class="intro-about">
+  <div class="intro-about__inner">
+
+    <!-- Левая часть: заголовок -->
+    <div class="intro-about__titlebox">
+      <h2 class="intro-about__title">Кто&nbsp;мы</h2>
+    </div>
+
+    <!-- Центр: фото -->
+    <div class="intro-about__photo">
+      <img src="./img/bg/9.png" alt="Сергей Сусленков — KOOF Agency">
+    </div>
+
+    <!-- Правая часть: текст-аннотация -->
+    <div class="intro-about__text">
+      <p>
+        Мы — команда, объединённая идеей вдохнуть новую жизнь в классическое искусство.  
+        <strong>KOOF AGENCY</strong> — это не просто агентство, а пространство, где музыка, культура и технологии работают вместе.  
+        Мы верим, что артисты должны чувствовать за собой команду — профессиональную, заботливую и вдохновлённую.
+      </p>
+      <p class="intro-about__subtext">
+        Каждый из нас — музыкант, продюсер, организатор, дипломат в сфере искусства.  
+        Вместе мы строим мосты между сценой и миром, помогая талантам быть услышанными.
+      </p>
+    </div>
+  </div>
+</section>
+<main class="page">
+
+  <!-- ЛЕВАЯ КОЛОНКА (липкая) -->
+  <aside class="left">
+
+    <!-- Навигация: переименовано с .menu на .railmenu -->
+    <nav class="railmenu" data-role="railmenu" aria-label="Навигация раздела">
+      <a href="#tasks"       data-target="tasks"       class="is-active">Задачи</a>
+      <a href="#goals"       data-target="goals">Цели</a>
+      <a href="#philosophy"  data-target="philosophy">Наша философия</a>
+      <a href="#projects"    data-target="projects">Проекты</a>
+    </nav>
+
+    <!-- Слайдер превью слева -->
+    <div class="left-slider">
+      <div class="slides">
+        <div class="slide slide--tasks is-active"    data-key="tasks"      aria-hidden="false"></div>
+        <div class="slide slide--goals"              data-key="goals"      aria-hidden="true"></div>
+        <div class="slide slide--philo"              data-key="philosophy" aria-hidden="true"></div>
+        <div class="slide slide--projects"           data-key="projects"   aria-hidden="true"></div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ПРАВАЯ КОЛОНКА (контент) -->
+  <section class="right">
+
+    <section id="tasks" class="section" data-key="tasks">
+      <div class="kicker">Раздел</div>
+      <h2 class="title">Задачи</h2>
+      <p class="text">
+        Краткое описание задач. Этот блок демонстрирует связку пунктов навигации и слайдов слева:
+        при скролле активный пункт подсвечивается, а превью меняется.
+      </p>
+    </section>
+
+    <section id="goals" class="section" data-key="goals">
+      <div class="kicker">Раздел</div>
+      <h2 class="title">Цели</h2>
+      <p class="text">
+        Здесь описываются основные цели проекта. Структура и стили упрощены до необходимого минимума.
+      </p>
+    </section>
+
+    <section id="philosophy" class="section" data-key="philosophy">
+      <div class="kicker">Раздел</div>
+      <h2 class="title">Наша философия</h2>
+      <p class="text">
+        О философии и принципах. Контентная часть прокручивается, левая колонка остаётся на месте.
+      </p>
+    </section>
+
+    <section id="projects" class="section" data-key="projects">
+      <div class="kicker">Раздел</div>
+      <h2 class="title">Проекты</h2>
+      <p class="text">
+        Краткий список проектов или превью. Фоновые изображения слева можно заменить на реальные.
+      </p>
+    </section>
+
+  </section>
+</main>
+
+<script src="js/doors.js"></script>
+<script src="js/sticki.js"></script>
+
+  <script src="js/wave.js"></script>
+ <script src="js/menu.js"></script>
+</body>
+</html>

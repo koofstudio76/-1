@@ -1,0 +1,1656 @@
+@import '../libs/btn/anim-menu-btn.css';
+
+@import '../css/vars.css';
+@import '../css/grid.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #fffdee;
+  color: var(--white-color);
+}
+
+@font-face {
+  font-family: montserrat-g;
+  src: url(../fonts/Montserrat-Regular.woff2);
+}
+
+@font-face {
+  font-family: montserrat-g;
+  src: url(../fonts/Montserrat-Bold.woff2);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: montserrat-g;
+  src: url(../fonts/Montserrat-Black.woff2);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: montserrat-g;
+  src: url(../fonts/Montserrat-SemiBold.woff2);
+  font-weight: 600;
+}
+
+body {
+  font-size: 16px;
+  font-family: montserrat-g, sans-serif;
+}
+
+/* menu */
+
+
+:root {
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --menu-bg1: #ffffff;
+  --menu-bg2: #f7f7f7;
+  --menu-bg3: #f1f1f1;
+  --velvet-green-1: #d5ffee;
+  --velvet-green-2: #58b08d;
+  --velvet-green-3: #092017;
+  --cherry-1: #55172c;
+  --cherry-2: #220914;
+  --cherry-3: #1a0810;
+  --navy-1: #4d6096;
+  --navy-2: #081029;
+  --navy-3: #060c22;
+  --orange-1: #a34900;
+  --orange-2: #7e3600;
+  --orange-3: #5b2700;
+  --black-1: #ecbaba;
+  --black-2: #0b1b6a;
+  --black-3: #080808;
+  --yellow-1: #e3b000;
+  --yellow-2: #fdfdfd;
+  --yellow-3: #b88700;
+  --ink: #0a0a0a;
+  --latte: #d9c7a8;
+}
+
+* {
+  box-sizing: border-box
+}
+
+.hdr {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 1000
+}
+
+.logo {
+  font-weight: 700;
+  margin-top: 12vh;
+  letter-spacing: .08em;
+  text-decoration: none;
+  color: #0a0a0a
+}
+
+.logo img {
+  width: 90px;
+}
+
+.burger {
+  width: 52px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  position: relative;
+  cursor: pointer
+}
+
+.burger span {
+  display: none
+}
+
+.burger::before,
+.burger::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 2.4px;
+  background: #0a0a0a;
+  top: 40%;
+  transition: transform .35s var(--ease)
+}
+
+.burger::after {
+  top: 60%
+}
+
+.burger[aria-expanded="true"]::before {
+  transform: translateY(5px) rotate(45deg)
+}
+
+.burger[aria-expanded="true"]::after {
+  transform: translateY(-5px) rotate(-45deg)
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: 1fr 40vw;
+  background: radial-gradient(1200px 800px at 55% 20%, rgba(135, 131, 131, 0.812) 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s var(--ease), visibility .4s var(--ease), background 600ms var(--ease);
+}
+
+.menu.is-open {
+  opacity: 1;
+  visibility: visible
+}
+
+.menu-col--list {
+  padding: 10vh clamp(28px, 6vw, 80px)
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px
+}
+
+.mi {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  user-select: none;
+  font-size: clamp(32px, 7.2vw, 76px);
+  line-height: .95;
+  transition: background-color .35s var(--ease);
+  overflow: hidden;
+  padding-right: 4px;
+}
+
+.mi:hover {
+  background: linear-gradient(180deg, #ffffff, #f7f7f7 60%, #f1f1f1)
+}
+
+.mi .t {
+  display: block;
+  font-weight: 300;
+  font-style: normal;
+  color: #0a0a0a;
+  opacity: 1;
+  transform: none;
+  transition: opacity .18s var(--ease);
+  white-space: nowrap;
+}
+
+.mi .run {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity .18s var(--ease);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.mi:hover .t {
+  opacity: 0;
+}
+
+.mi:hover .run {
+  opacity: 1;
+}
+
+.mi .run .track {
+  display: inline-block;
+  padding-right: 48px;
+  animation: marqueeX 12s linear infinite;
+}
+
+.mi .run .track+.track {
+  margin-left: 48px;
+}
+
+.mi .run .sep {
+  opacity: .45;
+  margin: 0 14px;
+}
+
+@keyframes marqueeX {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.mi small {
+  display: block;
+  font: 600 12px/1.2 Inter, system-ui;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-top: 4px
+}
+
+.menu-col--preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-left: 1px solid #00000010;
+  transition: background 600ms var(--ease)
+}
+
+.ph-wrap {
+  width: 100%;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+}
+
+.ph {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateY(14px) scale(.985);
+  transition: opacity .45s var(--ease), transform .6s var(--ease)
+}
+
+.ph.is-on {
+  opacity: 1;
+  transform: translateY(0) scale(1)
+}
+
+@media (max-width:900px) {
+  .menu {
+    grid-template-columns: 1fr
+  }
+
+  .menu-col--preview {
+    display: none
+  }
+}
+
+/* slider */
+.slider {
+  height: 100%;
+}
+
+.slider__layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.slider__item {
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease, opacity .8s ease !important;
+  /* активный слайд — ближе к камере, лёгкий поворот */
+  transform: translateZ(80px) rotateY(10deg) scale(1.05) !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .55);
+  border-radius: 12px;
+  will-change: transform;
+}
+
+.slider__item:not(.swiper-slide-active) {
+  /* неактивные — уводим в глубину и слегка отворачиваем */
+  transform: translateZ(-240px) rotateY(-14deg) scale(.9) !important;
+  opacity: .75;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .45);
+}
+
+.slider-ui {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+}
+
+.top-line {
+  z-index: 999;
+  padding: 3.2em 0;
+}
+
+
+.button {
+  padding: 1.05em 2.6em;
+  color: var(--white-color);
+  background-color: var(--green-color);
+  border: 1.5px solid transparent;
+  border-radius: 10em 0 10em 10em;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: .21em;
+  text-transform: uppercase;
+  font-size: .65em;
+  cursor: pointer;
+}
+
+.button--top {
+  background-color: transparent;
+  border-color: var(--green-color);
+  margin: 0 2em 0 3em;
+}
+
+.button--main {
+  margin-top: 3em;
+  padding: 1.6em 3.5em;
+}
+
+.button:hover {
+  pointer-events: all;
+  background-color: var(--green-color);
+}
+
+.submenu {
+  --anim-menu-btn-color: var(--gray-color);
+  --anim-menu-btn-gap: .195em;
+  --anim-menu-btn-width: 1.08em;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header-content {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  flex-direction: column;
+}
+
+.header-content__slide {
+  position: absolute;
+}
+
+.header-content h1 {
+  font-size: calc(var(--index) * 8.95);
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.header-content p {
+  max-width: 560px;
+  font-weight: 600;
+  line-height: 1.4;
+  display: inline-block;
+}
+
+.header-bottom {
+  min-height: 120px;
+}
+
+.letters .letter {
+  /* ваша анимация/opacity остаются, добавляем глубину */
+  transform: translateZ(120px);
+  color: beige;
+  /* многоуровневые тени для «объёма» */
+  text-shadow:
+    1px 1px 0 #0e0e0e,
+    2px 2px 0 #0e0e0e,
+    3px 3px 0 #0e0e0e,
+    4px 4px 0 #0e0e0e,
+    6px 6px 12px rgba(0, 0, 0, .55);
+  will-change: transform;
+  position: relative;
+  margin-left: calc(var(--index) * -1.65);
+  right: calc(var(--index) * .65);
+  opacity: 0;
+  top: -5em;
+  transition: opacity var(--transition), top var(--transition);
+}
+
+
+.header-content__slide.active .letter {
+  opacity: 1;
+  top: 0;
+}
+
+.header-content__slide.active+* .letter {
+  top: 5em;
+}
+
+.header-content__info {
+  top: -18em;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1s ease, top 1.25s ease;
+}
+
+.header-content__slide.active .header-content__info {
+  opacity: 1;
+  top: 0;
+}
+
+.header-content__slide:has(* + .active .header-content__info),
+.header-content__slide.active+* .header-content__info {
+  top: 18em;
+}
+
+
+.logo,
+.main-menu,
+.button,
+.submenu {
+  pointer-events: auto;
+}
+
+/* Камера/перспектива для всей сцены */
+.slider {
+  height: 100%;
+  perspective: 3100px;
+  perspective-origin: 50% 45%;
+  overflow: hidden;
+}
+
+/* Разрешаем детям быть 3D */
+.slider-ui,
+.header-wrapper,
+.header-content {
+  transform-style: preserve-3d;
+}
+
+.slider__layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  /* базовое положение в плоскости */
+  transform: translateZ(0);
+}
+
+/* Чем «раньше» слой, тем дальше от камеры и тем больше scale для компенсации */
+.slider__layer:nth-child(1) {
+  transform: translateZ(-300px) scale(1.35);
+}
+
+.slider__layer:nth-child(2) {
+  transform: translateZ(-180px) scale(1.22);
+}
+
+.slider__layer:nth-child(3) {
+  transform: translateZ(-80px) scale(1.12);
+}
+
+.slider__layer:nth-child(4) {
+  transform: translateZ(-20px) scale(1.05);
+}
+
+.header-content h1 {
+  /* заметный вынос к камере + лёгкий наклон */
+  transform: translateZ(160px) rotateX(2deg);
+  /* усиленная объёмная тень для жирного заголовка */
+  text-shadow:
+    0 6px 0 rgba(0, 0, 0, .35),
+    0 18px 24px rgba(0, 0, 0, .55);
+  will-change: transform;
+}
+
+.header-content p {
+  transform: translateZ(90px);
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, .45));
+  will-change: transform;
+}
+
+.button--main {
+  transform: translateZ(120px);
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .5));
+  will-change: transform;
+}
+
+/* Информационный блок — чуть вглубь относительно заголовка */
+.header-content__info {
+  transform: translateZ(60px);
+  will-change: transform;
+}
+
+/* Убираем артефакты при повороте */
+.slider__item,
+.slider__layer,
+.header-content * {
+  backface-visibility: hidden;
+}
+
+/* кнопка */
+
+
+:root {
+  --btn: 14vw;
+  /* диаметр кнопки */
+  --spin: 6s;
+  /* скорость вращения */
+  --sep: " • ";
+  /* разделитель между словами по кругу */
+}
+
+/* КНОПКА */
+.gear-btn {
+  top: -0vh;
+  position: fixed;
+  right: 0vw;
+  width: var(--btn);
+  height: var(--btn);
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, .55));
+  pointer-events: auto;
+  z-index: 9999;
+}
+
+.gear-btn svg {
+  display: block
+}
+
+.gear-btn .outer {
+  animation: spin var(--spin) linear infinite
+}
+
+.gear-btn .inner {
+  position: absolute;
+  width: 62%;
+  height: 62%;
+  animation: spinrev calc(var(--spin) * .65) linear infinite
+}
+
+.gear-btn:hover .outer {
+  animation-duration: 3.6s
+}
+
+.gear-btn:hover .inner {
+  animation-duration: 2.4s
+}
+
+.header-content__info {
+  pointer-events: auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes spinrev {
+  to {
+    transform: rotate(-360deg)
+  }
+}
+
+/* Кольцевой текст */
+.ring {
+  position: absolute;
+  inset: 0;
+  padding: 4%;
+  pointer-events: none
+}
+
+.ring text {
+  font-weight: 700;
+  letter-spacing: .14em;
+  font-size: 14px;
+  text-transform: uppercase;
+  fill: url(#goldFill);
+  paint-order: stroke;
+  stroke: #5b4315;
+  stroke-width: 1.2px;
+}
+
+/* Уважение prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .outer,
+  .inner {
+    animation: none
+  }
+}
+
+/* team */
+
+*body {
+  background-color: #264690;
+}
+
+@font-face {
+  font-family: 'hendMade';
+  src: url('FileName.eot');
+  src: url('FileName.eot?#iefix') format('embedded-opentype'),
+    url('FileName.woff') format('woff'),
+    url('../../fonts/ofont.ru_Miama\ Nueva.ttf') format('truetype'),
+    url('FileName.svg#hendMade') format('svg');
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background: var(--page-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.2;
+}
+
+/* Заголовок */
+.heading {
+  font-weight: 300;
+  font-size: clamp(2rem, 6vw, 5rem);
+  white-space: nowrap;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.heading>span {
+  display: inline;
+  margin-right: 0.35em;
+}
+
+/* Сетка: 2 в ряд на >=768px */
+.items {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* КАРТОЧКИ — 3D / параллакс */
+.item.depth-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 75vh;
+  perspective: var(--card-perspective);
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* начальная лёгкая тень во внутреннем объёме */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .18);
+  background: transparent;
+}
+
+/* Фон карточки — тёмно-коричневый градиент с объёмом */
+.item__layer.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* многослойный фон: градиент + лёгкий шум */
+  background:
+    radial-gradient(120% 100% at 70% 10%, rgba(255, 255, 255, .06) 0%, transparent 60%),
+    radial-gradient(100% 120% at 0% 100%, rgba(0, 0, 0, .35) 0%, transparent 60%),
+    linear-gradient(160deg, #fbfb73 0%, #1bd572 35%, #216969 100%);
+  transform: translateZ(-80px) scale(1.18);
+  will-change: transform;
+}
+
+/* PNG-портрет — второй уровень, «ближе к зрителю» */
+.item__layer.portrait {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: end center;
+  pointer-events: none;
+  width: 100%;
+  height: 112%;
+  background-color: gold;
+  transform: translateZ(20px);
+}
+
+.item__layer.portrait img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .45));
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* Контент поверх */
+.item__content {
+  position: absolute;
+  left: clamp(16px, 4vw, 28px);
+  right: clamp(16px, 4vw, 28px);
+  bottom: clamp(16px, 4vw, 28px);
+  z-index: 3;
+  color: var(--card-title);
+  transform: translateZ(40px);
+}
+
+.item__title {
+  margin: 0 0 .35rem 0;
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  color: var(--card-title);
+}
+
+.item__meta {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: var(--card-muted);
+  margin-bottom: 1rem;
+}
+
+/* Кнопка-стрелка */
+.item__excerpt {
+  margin: 0;
+}
+
+.item__excerpt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--card-title);
+  cursor: pointer;
+}
+
+.item__excerpt-link .arrow {
+  width: 22px;
+  height: 22px;
+  transform: translateX(0);
+  transition: transform .22s ease;
+}
+
+.item__excerpt-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Доступность фокуса ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* БАЗА 
+
+/* Доступность фокуса ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Параллакс */
+.parallax {
+  background-image: url('your-background-image.jpg');
+  /* вставьте свою картинку */
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  max-width: 100vw;
+  text-align: lesft;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-block {
+  max-width: 30vw;
+  margin: 25vh 4vh 0 2vw;
+  padding-top: 12vh;
+}
+
+.text-img {
+  display: flex;
+  margin: 4vh 6vh;
+  align-items: center;
+}
+
+.text-img {
+  width: auto;
+  height: 85vh;
+
+}
+
+
+/* Анимация появления текста */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.fade-in-delay {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Внутри карточки — только графика */
+.item__layer.portrait {
+  display: grid;
+  place-items: center;
+}
+
+.blob-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* круг будет скейлиться — начальное состояние */
+.mask {
+  transform-origin: 50% 50%;
+}
+
+/* подписи снизу (как раньше) */
+.card-info {
+  margin: 1rem 0 2.5rem;
+  text-align: left;
+}
+
+.card-info .name {
+  margin: 0 0 .35rem 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card-info .role {
+  margin: 0 0 .65rem 0;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.card-info .arrow svg {
+  width: 26px;
+  height: 26px;
+}
+
+.card-line {
+  height: 1px;
+  background: rgba(0, 0, 0, .25);
+  width: 100%;
+  margin-top: .65rem;
+}
+
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .9;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, .25);
+  border: 1px solid #ffffff2a;
+}
+
+p {
+  margin: 0;
+  opacity: .9;
+  max-width: 68ch;
+}
+
+.hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  opacity: .65;
+  font-size: 12px;
+  user-select: none;
+  background: #00000066;
+  border: 1px solid #ffffff1a;
+  padding: 6px 8px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+
+
+/* Кликабельность карточек */
+.card-block,
+[data-href] {
+  cursor: pointer !important;
+}
+
+/* Закрытое меню НЕ перехватывает клики */
+.menu:not(.is-open) {
+  pointer-events: none !important;
+}
+
+/* Превью-колонка ниже списка (чтобы не перекрывала клики по пунктам) */
+@media (min-width: 901px) {
+  .menu-col--list {
+    position: relative;
+    z-index: 3;
+  }
+
+  .menu-col--preview {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Оверлей «двери»: по умолчанию не ловит клики, только во время анимации */
+.door-overlay {
+  pointer-events: none;
+}
+
+.door-overlay.is-closing {
+  pointer-events: auto;
+}
+
+/* our team */
+
+.team-intro {
+  background: #f6f5f5;
+  color: #efeff1;
+  text-align: center;
+  display: flex;
+  margin: 4vh 0;
+  justify-content: space-between;
+  max-width: 100vw;
+  padding: 5%;
+}
+
+.team-intro img {
+  width: 40vw;
+  height: 80%;
+  object-fit: cover;
+}
+
+
+.team-intro__text {
+  font-family: 'hendMade';
+  font-weight: 700;
+  max-width: 55vw;
+  padding: 2vh 8vh;
+  margin: 0 auto 18px;
+  font-size: clamp(16px, 1.2vw, 45px);
+  line-height: 1.726;
+  color: #080808;
+}
+
+@media (max-width:786px) {
+  .team-intro img {
+    width: auto;
+    height: 80vh;
+    object-fit: contain;
+  }
+
+  .team-intro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .team-intro__text {
+    font-family: 'hendMade';
+    font-weight: 700;
+    width: 98vw;
+    padding: 2vh 0;
+  }
+}
+
+
+/* Контейнер 30% / 70% */
+.ac-board {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  /* 30% / 70% */
+  gap: clamp(16px, 2vw, 28px);
+  align-items: start;
+  padding: 0;
+}
+
+/* Фильтры слева: вертикальный стек, хорошо видимые */
+.ac-filters {
+  position: sticky;
+  top: 84px;
+  align-self: start;
+  background-color: #000;
+}
+
+.ac-filters__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.ac-filter {
+  background-color: #000;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: clamp(14px, 2vw, 20px);
+
+  color: #f6e7c5;
+  font-weight: 900;
+  letter-spacing: .06em;
+  font-size: clamp(18px, 2.4vw, 28px);
+  transition: background .2s ease, transform .15s ease, border-color .2s ease;
+}
+
+.ac-filter:hover {
+  transform: translateX(2px)
+}
+
+.ac-filter.is-active {
+  border-color: #395179
+}
+
+/* Карточки справа: 2 в ряд */
+.ac-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: clamp(14px, 2vw, 20px);
+}
+
+/* Упрощённая карточка */
+.p-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  background: #264690;
+  border: 1px solid #ffffff14;
+  border-radius: 16px;
+  padding: clamp(14px, 2vw, 18px);
+}
+
+.p-main {
+  min-width: 0
+}
+
+.p-name {
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: .02em;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: #f2eddc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.p-role {
+  color: #cfc7b0;
+  font-size: clamp(13px, 1.6vw, 16px);
+  opacity: .9;
+  margin-top: 4px
+}
+
+.p-arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fafafa;
+  color: #ffd56b;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+
+.p-card:hover .p-arrow {
+  transform: translateX(4px);
+  background: #273246;
+  color: #ffe08a
+}
+
+/* Узкие экраны: фильтры вверх, сами по 2 в ряд */
+@media (max-width: 980px) {
+  .ac-board {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-filters {
+    position: relative;
+    top: auto
+  }
+
+  .ac-filters__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px
+  }
+
+  .ac-filter {
+    text-align: center;
+    letter-spacing: .04em;
+    font-size: clamp(16px, 4vw, 20px)
+  }
+}
+
+
+:root {
+  --curtain-duration: 900ms;
+  /* длительность анимации створок */
+  --curtain-ease: cubic-bezier(.7, 0, .3, 1);
+  --curtain-brand-delay: 120ms;
+  /* задержка появления титра */
+}
+
+.curtains {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  pointer-events: none;
+}
+
+.curtains .panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50vw;
+  background: #000;
+  transform: translateX(0);
+  transition: transform var(--curtain-duration) var(--curtain-ease);
+}
+
+.curtains .left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.curtains .right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.curtains.closed .left {
+  transform: translateX(0%);
+}
+
+.curtains.closed .right {
+  transform: translateX(0%);
+}
+
+/* Титр/логотип поверх створок */
+.curtains__brand {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #f4ead1;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .28s ease var(--curtain-brand-delay), transform .28s ease var(--curtain-brand-delay);
+  pointer-events: none;
+}
+
+.curtains.closed .curtains__brand {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.curtains .brand-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: clamp(22px, 4vw, 44px);
+  background: linear-gradient(180deg, #f9e7a7, #e6c062 60%, #caa245);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 22px rgba(255, 210, 120, .18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .curtains .panel,
+  .curtains__brand {
+    transition: none !important;
+  }
+}
+
+
+/* about */
+
+:root {
+  --left-bg: #df4b07;
+  --right-bg: #fbfbfb;
+  --text: #000;
+  --menu-gap: 1.2rem;
+  --menu-size: clamp(24px, 3.4vw, 44px);
+  --menu-weight: 900;
+  --content-width-left: 50vw;
+  --content-width-right: 50vw;
+  --transition-fast: 300ms ease;
+  --transition-slow: 700ms cubic-bezier(.22, 1, .36, 1);
+}
+
+html,
+body {
+  height: 100%
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--right-bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  line-height: 1.35;
+}
+
+/* ====== LAYOUT ====== */
+.page {
+  display: flex;
+  min-height: 100vh
+}
+
+.left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: var(--content-width-left);
+  background: var(--left-bg);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  /* верх: меню; низ: слайды */
+  border-right: 1px solid rgba(0, 0, 0, .15);
+  overflow: hidden;
+}
+
+.right {
+  width: var(--content-width-right)
+}
+
+/* ====== NAV (бывш. .menu) ====== */
+.railmenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2vh 0 1vh;
+  gap: var(--menu-gap);
+}
+
+.railmenu a {
+  text-decoration: none;
+  color: wheat;
+  padding-bottom: 2vh;
+  border-bottom: 1px solid wheat;
+  font-size: var(--menu-size);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  opacity: .75;
+  transition: opacity var(--transition-fast), font-weight var(--transition-fast), transform var(--transition-fast);
+  will-change: font-weight, opacity, transform;
+}
+
+.railmenu a:hover {
+  opacity: 1;
+  transform: translateX(2px)
+}
+
+.railmenu a.is-active {
+  font-weight: var(--menu-weight);
+  opacity: 1
+}
+
+/* ====== LEFT SLIDER ====== */
+.left-slider {
+  position: relative;
+  overflow: hidden
+}
+
+.slides {
+  position: absolute;
+  inset: 0
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+  font-size: clamp(14px, 1.2vw, 18px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  will-change: opacity, transform;
+  opacity: 0;
+  transform: scale(1.02);
+  z-index: 0;
+  margin: 0 auto 4vh;
+}
+
+.slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2
+}
+
+/* Если используете заглушки-картинки слева — оставьте, иначе удалите: */
+.slide--tasks {
+  background-image: url(../img/1.webp);
+  background-size: cover;
+}
+
+.slide--goals {
+  background-image: url(../img/about/2.png);
+  background-size: cover;
+}
+
+.slide--philo {
+  background-image: url(../img/about/3.png);
+  background-size: cover;
+}
+
+/* ====== RIGHT CONTENT ====== */
+.section {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  padding: 10vh 8vw;
+  background: var(--right-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+.kicker {
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  opacity: .7
+}
+
+.title {
+  font-size: clamp(28px, 4.6vw, 64px);
+  font-weight: var(--menu-weight);
+  margin: .3em 0 .2em;
+  color: #f26b2c
+}
+
+.text {
+  font-size: clamp(16px, 1.64vw, 28px);
+  color: #000;
+  max-width: 60ch;
+  line-height: 1.62
+}
+
+/* ====== SMALL SCREENS ====== */
+@media (max-width:980px) {
+  :root {
+    --content-width-left: 100vw;
+    --content-width-right: 100vw
+  }
+
+  .page {
+    flex-direction: column
+  }
+
+  .left {
+    position: relative;
+    height: auto;
+    grid-template-rows: auto 45vh
+  }
+
+  .railmenu {
+    padding: 3vh 6vw
+  }
+
+  .section {
+    min-height: 90vh;
+    padding: 8vh 6vw
+  }
+}
+
+/* ПОДВОДКА */
+.intro-about {
+  background: #ffdacf;
+  padding: clamp(60px, 10vw, 140px) 8vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-about__inner {
+  display: grid;
+  grid-template-columns: 2fr 4fr 5fr;
+  align-items: center;
+  gap: clamp(20px, 4vw, 60px);
+  max-width: 98vw;
+  margin: 0 auto;
+}
+
+/* Левая колонка */
+.intro-about__titlebox {
+  align-self: start;
+}
+
+.intro-about__title {
+  width: 10vw;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 800;
+  color: #702905;
+  /* тёмно-синий */
+  text-transform: uppercase;
+  transform: translateY(15%);
+
+  letter-spacing: .05em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Центральная фотография */
+.intro-about__photo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Правая колонка */
+.intro-about__text {
+  position: relative;
+  transform: translateY(15%);
+}
+
+.intro-about__text p {
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.8;
+  color: #1a1a1a;
+  margin: 0 0 1.5em;
+}
+
+.intro-about__subtext {
+  font-size: clamp(16px, 1.3vw, 20px);
+  color: #3a3a3a;
+  margin-top: 1.2em;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width:1000px) {
+  .intro-about__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .intro-about__titlebox {
+    order: 1;
+  }
+
+  .intro-about__photo {
+    order: 2;
+  }
+
+  .intro-about__text {
+    order: 3;
+    transform: none;
+  }
+
+  .intro-about__photo img {
+    max-width: 360px;
+    margin: auto;
+  }
+}
+
+.hero {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 100vw;
+}
+
+/* фон самого дропа */
+.menu .menu__dropdown {
+  background-image: url("img/ui/glass_wet_1600x1100.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* лёгкий цвет, чтобы активировать фон-прозрачность */
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+
+/* ====== RIGHT CONTENT ====== */
+.section {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  padding: 10vh 8vw;
+  background: var(--right-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+.kicker {
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  opacity: .7
+}
+
+.title {
+  font-size: clamp(28px, 4.6vw, 64px);
+  font-weight: var(--menu-weight);
+  margin: .3em 0 .2em;
+  color: #f26b2c
+}
+
+.text {
+  font-size: clamp(16px, 1.64vw, 28px);
+  color: #000;
+  max-width: 60ch;
+  line-height: 1.62
+}
+
+/* ====== SMALL SCREENS ====== */
+@media (max-width:980px) {
+  :root {
+    --content-width-left: 100vw;
+    --content-width-right: 100vw
+  }
+
+  .page {
+    flex-direction: column
+  }
+
+  .left {
+    position: relative;
+    height: auto;
+    grid-template-rows: auto 45vh
+  }
+
+  .railmenu {
+    padding: 3vh 6vw
+  }
+
+  .section {
+    min-height: 90vh;
+    padding: 8vh 6vw
+  }
+}

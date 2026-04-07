@@ -1,0 +1,57 @@
+:root { 
+      --hero-height: 100vh; 
+      --brand-color:#ff4500; 
+      --gold-1:#b07c19; --gold-2:#e7c164; --gold-3:#f7e29e; --gold-4:#9a6a12;
+    }
+ 
+    .hero { position: relative; height: var(--hero-height); overflow: hidden; isolation: isolate; }
+    canvas#ripple { position: absolute;
+      margin: 0;padding: 0;
+      inset: 0; width: 100%; height: 100%; display:block; }
+
+
+    /* ======== «барокко» заголовок с золотым анимированным градиентом ======== */
+    @property --angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+    @keyframes spin { to { --angle: 360deg; } }
+    @keyframes gleam { 0%{ background-position: 50% 40%; } 50%{ background-position: 60% 60%; } 100%{ background-position: 50% 40%; } }
+
+    
+    .badge { display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; opacity:.9; backdrop-filter: blur(4px); background: rgba(0,0,0,.25); border:1px solid #ffffff2a; }
+    p { margin:0; opacity:.9; max-width: 68ch; }
+    .hint { position:absolute; right:12px; bottom:12px; z-index:2; opacity:.65; font-size:12px; user-select:none; background:#00000066; border:1px solid #ffffff1a; padding:6px 8px; border-radius:8px; backdrop-filter: blur(4px); pointer-events:none; }
+
+    /* ======== круглые кнопки (языки) ======== */
+    .gold-round {
+      --border: 1mm; /* по просьбе: 1 миллиметр */
+      border: var(--border) solid transparent;
+      border-radius: 999px;
+      background:darkblue; animation: spin 10s linear infinite;
+      display: grid; place-items: center;
+      color: #000; text-decoration: none;
+      box-shadow: 0 10px 30px #00000080, inset 0 1px 0 #ffffff08;
+      transition: transform .2s ease, box-shadow .2s ease;
+      user-select:none; cursor:pointer;
+    }
+    .gold-round:hover { transform: translateY(-2px); box-shadow: 0 14px 36px #000000a0, inset 0 1px 0 #ffffff12; }
+
+    .gold-text {
+      font-family: Georgia, "Times New Roman", serif; /* замените на свой барочный шрифт */
+      font-weight: 800; letter-spacing:.04em;
+      background: radial-gradient(circle at 50% 50%, var(--gold-3) 0%, var(--gold-2) 35%, var(--gold-1) 65%, var(--gold-4) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: gleam 6s ease-in-out infinite;
+      text-shadow: 0 0 0 transparent; /* без артефактов */
+    }
+
+    /* языковая полоса строго 80vw, по центру */
+    .lang-bar { width: 80vw; margin: 18px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-items: center; align-items: center; pointer-events:auto; }
+    .lang-btn { width: 100%; max-width: 90px; aspect-ratio: 1/1; pointer-events:auto; }
+    .lang-btn .gold-text { font-size: clamp(18px, 3.8vw, 38px); }
+
+    /* статус и загрузчик */
+    .status { position: fixed; right: 12px; top: 12px; z-index: 11; padding:8px 10px; font-size:12px; border-radius:8px; border:1px solid #ffffff26; background:#00000090; backdrop-filter: blur(4px); }
+    .upload-wrap { position: fixed; right:12px; top: 56px; z-index:11; display:none; }
+    .upload-wrap label { display:inline-block; padding:8px 12px; border-radius:10px; border:1px solid #ffffff2a; background:#ffffff10; color:#fff; cursor:pointer; font-weight:700; }
+    .upload-wrap input { display:none; }
+
+ 
